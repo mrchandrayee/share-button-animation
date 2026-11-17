@@ -1,0 +1,35 @@
+<!-- index.html: visible HTML excerpt -->
+<a class="ch" data-ch="whatsapp" style="--i: 2">
+  <span class="ch__body">
+    <span class="ch__face"><svg class="ch__icon">…</svg></span>
+    <span class="ch__flood">
+      <span class="ch__lit"><svg class="ch__icon">…</svg></span>
+    </span>
+  </span>
+  <svg class="ch__tick">…</svg>
+  <span class="ch__burst"></span>
+</a>
+
+/* app.css: visible arc geometry */
+.splay {
+  --pitch: 46deg;
+  --gap: 1.5;
+  --r: calc(var(--d) * var(--gap) /
+    (2 * sin(var(--pitch) / 2)));
+}
+.ch {
+  --a: calc((var(--i) - (var(--n) - 1) / 2)
+    * var(--pitch));
+  transform: translate(
+    calc(sin(var(--a)) * var(--r) * var(--t)),
+    calc(cos(var(--a)) * var(--r) * var(--t) * -1)
+  ) scale(var(--s));
+}
+
+/* app.js: visible measured radius and click-origin flood */
+const r = parseFloat(
+  getComputedStyle(items[0]).getPropertyValue('--r'));
+const b = el.getBoundingClientRect();
+el.style.setProperty('--fx',
+  (ev.clientX - b.left) / b.width * 100 + '%');
+navigator.clipboard.writeText(url);
